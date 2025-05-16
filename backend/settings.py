@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-hp)=#^g4&y*)eewcf_7$q&4h#+oxpuz97e+&euw$l=2u3e59px
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -129,9 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS  = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -142,3 +141,11 @@ EMAIL_HOST_USER = 'naveenpoolakuntla09@gmail.com'
 EMAIL_HOST_PASSWORD = 'btiv rpys tosr ijue'
 DEFAULT_FROM_EMAIL = 'naveenpoolakuntla09@gmail.com'
 ADMIN_EMAIL = 'naveenpoolakuntla09@gmail.com'  # Where notifications will be sent
+
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# For production
+DEBUG = os.getenv("DEBUG", "False") == "True"
